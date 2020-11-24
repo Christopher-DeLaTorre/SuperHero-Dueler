@@ -1,3 +1,4 @@
+import ability
 from random import choice
 
 class hero:
@@ -13,25 +14,42 @@ class hero:
         return f"{choice(hold)} won!"
 
     def add_ability(self, ability):
+        self.abilities.append(ability)
+        return
+
+    def add_armor(self, armor):
+        self.armors.append(armor)
         return
 
     def attack(self):
-        return
+        total_damage = 0
+        for ability in self.abilities:
+            total_damage += ability.attack()
+        return total_damage
 
     def defend(self, incoming_damage):
-        return
+        total_damage = incoming_damage
+        for armor in self.armors:
+            total_damage -= armor.defend()
+        return total_damage
 
     def take_damage(self, damage):
-        return
+        self.current_health -= damage
+        return 
 
     def is_alive(self):
-        return
+        if self.current_health <= 0:
+            return False
+        else:
+            return True
+        
 
 
 
 
-evil = hero("Joker", 150)
-my_hero = hero("Grace Hopper", 200)
-print(my_hero.name)
-print(my_hero.current_health)
-print(my_hero.fight(evil))
+Ability = ability("Great Debugging", 50)
+another_ability = ability("Smarty Pants", 90)
+hero = hero("Grace Hopper", 200)
+hero.add_ability(ability)
+hero.add_ability(another_ability)
+print(hero.attack())

@@ -10,7 +10,5 @@ class ability:
         attack = random.randint(0, self.max_damage)
         return attack
 
-ability = ability("Debugging Shot", 10)
-print(ability.name)
-print(ability.attack())
+
 
